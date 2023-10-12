@@ -5,7 +5,6 @@ const delFunction = function (num) {
   tabContentsList[num].classList.remove('tab__content_active')
 }
 
-
 tabsList.forEach((i, num) => {
   i.onclick = () => {
     tabsList.forEach((j) => {
