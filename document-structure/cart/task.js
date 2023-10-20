@@ -3,10 +3,10 @@ const addBasket = Array.from(document.querySelectorAll('.product__add'))
 const products = document.querySelector('.products')
 const basket = document.querySelector('.cart__products')
 
-prodMenu.forEach((item, i ) => {
-  const minus = item.children[0];
-  const count = item.children[1];
-  const plus = item.children[2];
+prodMenu.forEach((item ) => {
+  const minus = item.querySelector('.product__quantity-control_dec');
+  const count = item.querySelector('.product__quantity-value');
+  const plus = item.querySelector('.product__quantity-control_inc');
 
   plus.addEventListener('click', () => {
     count.textContent++
@@ -26,19 +26,17 @@ function addProd(event) {
   const productImage = product.querySelector('.product__image').src;
   const carts = Array.from(document.querySelectorAll('.cart__product'))
 
-  const productInCard = carts.find(item =>
-    item.dataset.id === id);
-
-  if (productInCard) {
-    let countInBasket = productInCard.querySelector('.cart__product-count')
-    let sumCount = parseInt(countInBasket.innerText);
-    countInBasket.innerText = sumCount + countProd;
-  } else {
-    const addProdTo = `<div class="cart__product" data-id="${id}">
+  const addProdTo = `<div class="cart__product" data-id="${id}">
                                <img class="cart__product-image" src="${productImage}">
                                <div class="cart__product-count">${countProd}</div>
                             </div>`;
 
+  const productInCard = carts.find(item => item.dataset.id === id);
+
+  if (productInCard) {
+    productInCard.querySelector('.cart__product-count').innerText =
+      parseInt(productInCard.querySelector('.cart__product-count').innerText) + parseInt(countProd)
+  } else {
     basket.insertAdjacentHTML('beforeend', addProdTo)
   }
 }
