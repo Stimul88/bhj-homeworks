@@ -1,10 +1,11 @@
 const pollTitle = document.querySelector('#poll__title')
 const pollAnswers = document.querySelector('#poll__answers')
 
-let xhr = new XMLHttpRequest();
+const xhr = new XMLHttpRequest();
 
-xhr.addEventListener('readystatechange',() => {
+xhr.addEventListener('load',() => {
 
+  // xhr.addEventListener('readystatechange',() => {
 
 
   if (xhr.readyState === xhr.DONE) {
