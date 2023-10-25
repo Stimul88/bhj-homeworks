@@ -9,19 +9,13 @@ function getCookie(name) {
 
   const cookie = couple.find(p => p.startsWith(name + '='))
 
-
   return cookie.substring(name.length + 1)
 }
 
-if (getCookie('closePopup') === 'true') {
-  popup.classList.remove('modal_active')
-
-} else {
+if (getCookie('closePopup') === 'false') {
   popup.classList.add('modal_active')
   popupClose.addEventListener('click', () => {
     popup.classList.remove('modal_active')
     document.cookie = 'closePopup=' + encodeURIComponent('true');
   })
 }
-
-
